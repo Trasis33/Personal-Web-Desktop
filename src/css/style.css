@@ -12,8 +12,14 @@ background-size: contain;
 
 }
 
+#memory-container {
+  padding: 50px;
+  margin: 50px;
+  border: 2px;
+}
+
 img {
-  width: 100px;
+  width: 60px;
 }
 
 .removed {

@@ -29,7 +29,10 @@ class Memory extends window.HTMLElement {
 
       let a = document.createElement('a')
       a.setAttribute('href', '#')
-      this.shadowRoot.appendChild(a)
+
+      let cards = this.shadowRoot.querySelector('.memCards')
+
+      cards.appendChild(a)
 
       let img = document.createElement('img')
       img.setAttribute('src', 'image/0.png')
@@ -42,7 +45,7 @@ class Memory extends window.HTMLElement {
       })
 
       if ((i + 1) % this.cols === 0) {
-        this.shadowRoot.appendChild(document.createElement('br'))
+        cards.appendChild(document.createElement('br'))
       }
     }
   }
