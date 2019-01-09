@@ -1,0 +1,21 @@
+#bg {
+  width: 98vw;
+  height: 96vh;
+  background:
+  linear-gradient(red, transparent),
+  linear-gradient(to top left, lime, transparent),
+  linear-gradient(to top right, blue, transparent);
+background-blend-mode: screen;
+background-position: center;
+background-repeat: no-repeat;
+background-size: contain;
+
+}
+
+img {
+  width: 100px;
+}
+
+.removed {
+  visibility: hidden;
+}
