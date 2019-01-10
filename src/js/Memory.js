@@ -1,7 +1,7 @@
 
-import { memoryTemplate } from './templates.js'
+import { memoryTemplate, memoryInputTemplate } from './templates.js'
 
-class Memory extends window.HTMLElement {
+export default class Memory extends window.HTMLElement {
   constructor (rows = 4, cols = 4) {
     super()
     this.rows = rows
@@ -17,10 +17,26 @@ class Memory extends window.HTMLElement {
     this.pairTimeout = undefined
 
     this.attachShadow({ mode: 'open' })
-    this.shadowRoot.appendChild(memoryTemplate.content.cloneNode(true))
+    // this.shadowRoot.appendChild(memoryTemplate.content.cloneNode(true))
+
+    this.rowsInput = this.shadowRoot.querySelector('#rows-input')
+    this.colsInput = this.shadowRoot.querySelector('#cols-input')
+    this.inputBtn = this.shadowRoot.querySelector('#collect-input')
   }
 
   connectedCallback () {
+    this.inputBtn.addEventListener('click', () => {
+      // this.rows = this.rowsInput
+      // this.cols = this.colsInput
+      console.log(this.rows)
+      // this.clean()
+      // this.startGame()
+    })
+  }
+
+  startGame () {
+    this.shadowRoot.appendChild(memoryTemplate.content.cloneNode(true))
+
     this.tiles = this.getPicArray(this.rows, this.cols)
 
     for (let i = 0; i < this.rows * this.cols; i++) {
@@ -48,6 +64,11 @@ class Memory extends window.HTMLElement {
         cards.appendChild(document.createElement('br'))
       }
     }
+  }
+
+  changeSize (rows, cols) {
+    this.rows = rows
+    this.cols = cols
   }
 
   turnBrick (tile, index, img) {
@@ -110,6 +131,12 @@ class Memory extends window.HTMLElement {
       [a[i], a[j]] = [a[j], a[i]]
     }
     return a
+  }
+
+  clean () {
+    while (this.shadowRoot.firstChild) {
+      this.shadowRoot.removeChild(this.shadowRoot.firstChild)
+    }
   }
 }
 

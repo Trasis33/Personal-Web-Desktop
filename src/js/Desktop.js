@@ -1,5 +1,5 @@
-import { desktopTemplate } from './templates.js'
-import './Memory.js'
+import { desktopTemplate, memoryTemplate, memoryInputTemplate } from './templates.js'
+import Memory from './Memory.js'
 
 class Desktop extends window.HTMLElement {
   constructor () {
@@ -16,7 +16,11 @@ class Desktop extends window.HTMLElement {
   Memory () {
     this.memBtn.addEventListener('click', () => {
       // console.log('clicked!!!!!')
-      this.shadowRoot.appendChild(document.createElement('memory-game'))
+      this.shadowRoot.appendChild(memoryInputTemplate.content.cloneNode(true))
+
+      // let mem = new Memory(this.rowsInput, this.colsInput)
+      // this.shadowRoot.appendChild(document.createElement('memory-game'))
+      // this.shadowRoot.appendChild(mem)
     })
   }
 }
