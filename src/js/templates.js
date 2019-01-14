@@ -19,6 +19,7 @@ memoryInputTemplate.innerHTML = /* html */`
       <input type="text" id="rows-input" value="Rows"><br>
       Input number of columns:<br>
       <input type="text" id="cols-input" value="Columns"><br>
+     <!-- <input type="submit" id="collect-input">-->
     </form>
     <button type="button" id="collect-input">Submit</button>
 

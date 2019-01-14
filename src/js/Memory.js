@@ -17,22 +17,25 @@ export default class Memory extends window.HTMLElement {
     this.pairTimeout = undefined
 
     this.attachShadow({ mode: 'open' })
-    // this.shadowRoot.appendChild(memoryTemplate.content.cloneNode(true))
+    this.shadowRoot.appendChild(memoryTemplate.content.cloneNode(true))
 
-    this.rowsInput = this.shadowRoot.querySelector('#rows-input')
-    this.colsInput = this.shadowRoot.querySelector('#cols-input')
-    this.inputBtn = this.shadowRoot.querySelector('#collect-input')
+    // this.rowsInput = this.shadowRoot.querySelector('#rows-input')
+    // this.colsInput = this.shadowRoot.querySelector('#cols-input')
+    // this.inputBtn = this.shadowRoot.querySelector('.input-field1')
+    this.clean()
+    this.startGame()
   }
 
-  connectedCallback () {
-    this.inputBtn.addEventListener('click', () => {
-      // this.rows = this.rowsInput
-      // this.cols = this.colsInput
-      console.log(this.rows)
-      // this.clean()
-      // this.startGame()
-    })
-  }
+  // connectedCallback () {
+  //   console.log(this.inputBtn)
+  //   this.inputBtn.addEventListener('click', () => {
+  //     this.rows = this.rowsInput
+  //     this.cols = this.colsInput
+  //     console.log(this.rows)
+  //     this.clean()
+  //     this.startGame()
+  //   })
+  // }
 
   startGame () {
     this.shadowRoot.appendChild(memoryTemplate.content.cloneNode(true))
