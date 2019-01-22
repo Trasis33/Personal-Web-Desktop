@@ -1,4 +1,5 @@
 import { desktopTemplate, memoryTemplate, memoryInputTemplate } from './templates.js'
+// import { memoryCss } from './css.js'
 import Memory from './Memory.js'
 
 class Desktop extends window.HTMLElement {
@@ -7,6 +8,8 @@ class Desktop extends window.HTMLElement {
 
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(desktopTemplate.content.cloneNode(true))
+
+    // this.memCss = document
 
     this.memBtn = document.querySelector('#memory-button')
 
@@ -21,6 +24,7 @@ class Desktop extends window.HTMLElement {
       let mem = new Memory(this.rowsInput, this.colsInput)
       // this.shadowRoot.appendChild(document.createElement('memory-game'))
       document.querySelector('#app-container').appendChild(mem)
+      // this.shadowRoot.appendChild(memoryCss)
     })
   }
 }

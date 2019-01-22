@@ -9,34 +9,28 @@ background-blend-mode: screen;
 background-position: center;
 background-repeat: no-repeat;
 background-size: contain;
-
 }
 
-#memory-container {
+#container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+}
+
+/* #memory-container {
   width: 300px;
   height: 350px;
   border: 2px solid black;
   background-color: rgb(224, 250, 250);
-  /* position: absolute; */
-  /* display: flex; */
-  /* text-align: center;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto; */
-
-
-  
-}
-
-/* #app-container {
-  width: 100%;
-  height: 600px;
 } */
 
-#container {
-  position: absolute;
-  width: auto;
-  height: auto;
+#app-container {
+  width: 100%;
+  height: 600px;
 }
 
 .input-field1 {
@@ -49,11 +43,11 @@ background-size: contain;
   border-width: 20%;
 } */
 
-img {
+/* img {
   width: 60px;
 }
 
 .removed {
   visibility: hidden;
-}
+} */
 

@@ -12,7 +12,7 @@ desktopTemplate.innerHTML = /* html */`
 
 const dragTemplate = document.createElement('template')
 dragTemplate.innerHTML = /* html */`
-<div id="container">
+<div id="drag-container">
   <slot></slot>
 </div>
 `
@@ -36,7 +36,6 @@ memoryInputTemplate.innerHTML = /* html */`
 `
 const memoryTemplate = document.createElement('template')
 memoryTemplate.innerHTML = /* html */`
-<link rel="stylesheet" href="css/style.css">
 <drag-window>
 <div id="memory-container">
 <p>Memory Game</p>

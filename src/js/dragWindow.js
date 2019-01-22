@@ -1,4 +1,5 @@
 import { dragTemplate } from './templates.js'
+import { dragCss } from './css.js'
 
 class dragWindow extends window.HTMLElement {
   constructor () {
@@ -8,9 +9,10 @@ class dragWindow extends window.HTMLElement {
     this.active = false
 
     this.attachShadow({ mode: 'open' })
+    this.shadowRoot.appendChild(dragCss.content.cloneNode(true))
     this.shadowRoot.appendChild(dragTemplate.content.cloneNode(true))
 
-    this.container = this.shadowRoot.querySelector('#container')
+    this.container = this.shadowRoot.querySelector('#drag-container')
 
     // this.activeWindow = null
 

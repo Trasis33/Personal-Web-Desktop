@@ -1,5 +1,6 @@
 
 import { memoryTemplate, memoryInputTemplate } from './templates.js'
+import { memoryCss } from './css.js'
 
 export default class Memory extends window.HTMLElement {
   constructor (rows = 4, cols = 4) {
@@ -17,6 +18,8 @@ export default class Memory extends window.HTMLElement {
     this.pairTimeout = undefined
 
     this.attachShadow({ mode: 'open' })
+    this.shadowRoot.appendChild(memoryCss.content.cloneNode(true))
+
     this.shadowRoot.appendChild(memoryTemplate.content.cloneNode(true))
 
     // this.rowsInput = this.shadowRoot.querySelector('#rows-input')
