@@ -17,22 +17,37 @@ background-size: contain;
   height: 350px;
   border: 2px solid black;
   background-color: rgb(224, 250, 250);
+  /* position: absolute; */
   /* display: flex; */
-  text-align: center;
+  /* text-align: center;
   align-items: center;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; */
+
+
+  
+}
+
+/* #app-container {
+  width: 100%;
+  height: 600px;
+} */
+
+#container {
+  position: absolute;
+  width: auto;
+  height: auto;
 }
 
 .input-field1 {
   margin-left: auto;
   margin-right: auto;
 }
-
+/* 
 #memory-container:hover {
   cursor: pointer;
   border-width: 20%;
-}
+} */
 
 img {
   width: 60px;
@@ -41,3 +56,4 @@ img {
 .removed {
   visibility: hidden;
 }
+

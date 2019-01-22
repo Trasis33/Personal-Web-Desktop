@@ -22,7 +22,7 @@ export default class Memory extends window.HTMLElement {
     // this.rowsInput = this.shadowRoot.querySelector('#rows-input')
     // this.colsInput = this.shadowRoot.querySelector('#cols-input')
     // this.inputBtn = this.shadowRoot.querySelector('.input-field1')
-    this.clean()
+    // this.clean()
     this.startGame()
   }
 
@@ -38,7 +38,7 @@ export default class Memory extends window.HTMLElement {
   // }
 
   startGame () {
-    this.shadowRoot.appendChild(memoryTemplate.content.cloneNode(true))
+    // this.shadowRoot.appendChild(memoryTemplate.content.cloneNode(true))
 
     this.tiles = this.getPicArray(this.rows, this.cols)
 

@@ -1,5 +1,6 @@
 // import './Desktop.js'
 import Memory from './Memory.js'
+import './dragWindow.js'
 
 let container = document.querySelector('#app-container')
 let memBtn = document.querySelector('#memory-button')
