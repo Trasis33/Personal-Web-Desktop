@@ -4,8 +4,8 @@ dragCss.innerHTML = /* css */`
 <style>
 #drag-container {
   position: absolute;
-  /* width: auto;
-  height: auto; */
+  width: auto;
+  height: auto; 
 }
 </style>
 `

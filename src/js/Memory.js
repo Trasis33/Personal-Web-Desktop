@@ -1,5 +1,5 @@
 
-import { memoryTemplate, memoryInputTemplate } from './templates.js'
+import { memoryTemplate } from './templates.js'
 import { memoryCss } from './css.js'
 
 export default class Memory extends window.HTMLElement {
@@ -19,7 +19,6 @@ export default class Memory extends window.HTMLElement {
 
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(memoryCss.content.cloneNode(true))
-
     this.shadowRoot.appendChild(memoryTemplate.content.cloneNode(true))
 
     // this.rowsInput = this.shadowRoot.querySelector('#rows-input')

@@ -1,4 +1,4 @@
-import { desktopTemplate, memoryTemplate, memoryInputTemplate } from './templates.js'
+import { desktopTemplate } from './templates.js'
 // import { memoryCss } from './css.js'
 import Memory from './Memory.js'
 

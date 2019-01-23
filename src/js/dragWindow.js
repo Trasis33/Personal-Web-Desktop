@@ -19,17 +19,12 @@ class dragWindow extends window.HTMLElement {
 
   dragWindow () {
     this.container.addEventListener('mousedown', (e) => {
-      console.log('hej')
       this.dragStart(e)
     })
     window.addEventListener('mousemove', (e) => {
-      console.log('hej')
-
       this.drag(e)
     })
     window.addEventListener('mouseup', (e) => {
-      console.log('hej')
-
       this.dragEnd(e)
     })
   }
