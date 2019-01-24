@@ -1,13 +1,15 @@
 import { chatTemplate } from './templates.js'
 import { chatCss } from './css.js'
-import config from './config.json'
+// import * as config from './config.js'
 
 export default class Chat extends window.HTMLElement {
   constructor () {
     super()
 
-    this.socket = new WebSocket(config.adress)
+    // this.adress = config.key
 
+    this.socket = new WebSocket('ws://vhost3.lnu.se:20080/socket/')
+    // console.log(this.adress)
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(chatCss.content.cloneNode(true))
     this.shadowRoot.appendChild(chatTemplate.content.cloneNode(true))
@@ -29,6 +31,7 @@ export default class Chat extends window.HTMLElement {
     })
 
     this.connect()
+    this.sendMessage('test')
   }
 
   connect () {
@@ -37,15 +40,15 @@ export default class Chat extends window.HTMLElement {
   }
 
   sendMessage (text) {
-    let data = {
+    this.data = {
       type: 'message',
       data: text,
       username: 'trasis',
       channel: '',
-      key: config.key
+      key: 'eDBE76deU7L0H9mEBgxUKVR0VCnq0XBd'
     }
 
-    // this.socket.send(text)
+    this.socket.send(JSON.stringify(this.data))
   }
 
   printMessage () {
