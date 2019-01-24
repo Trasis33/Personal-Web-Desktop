@@ -1,9 +1,12 @@
 import { chatTemplate } from './templates.js'
 import { chatCss } from './css.js'
+import config from './config.json'
 
 export default class Chat extends window.HTMLElement {
   constructor () {
     super()
+
+    this.socket = new WebSocket(config.adress)
 
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(chatCss.content.cloneNode(true))
@@ -15,23 +18,34 @@ export default class Chat extends window.HTMLElement {
     this.chatDiv = this.shadowRoot.querySelector('.message-area')
     // console.log(this.chatDiv)
 
-    this.connect()
-  }
-
-  connect () {
     this.chatDiv.addEventListener('keypress', e => {
       // listen for enter key
       if (e.keyCode === 13) {
-        // send message
+        this.sendMessage(e.target.value)
         // empty textarea
         e.target.value = ''
         e.preventDefault()
       }
     })
+
+    this.connect()
   }
 
-  sendMessage () {
+  connect () {
+    // new WebSocket('ws://vhost3.lnu.se:20080/socket/')
 
+  }
+
+  sendMessage (text) {
+    let data = {
+      type: 'message',
+      data: text,
+      username: 'trasis',
+      channel: '',
+      key: config.key
+    }
+
+    // this.socket.send(text)
   }
 
   printMessage () {
