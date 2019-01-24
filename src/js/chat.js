@@ -53,7 +53,9 @@ export default class Chat extends window.HTMLElement {
 
       this.socket.addEventListener('message', e => {
         this.message = JSON.parse(e.data)
-        this.printMessage(this.message)
+        if (this.message.type === 'message') {
+          this.printMessage(this.message)
+        }
       })
     })
     let result = await promise
