@@ -17,10 +17,13 @@ export default class Chat extends window.HTMLElement {
     // this.template = this.shadowRoot.querySelector('.chat')
     // this.chatDiv = this.shadowRoot.importNode(this.template.content.firstChild, true)
 
-    this.chatDiv = this.shadowRoot.querySelector('.message-area')
-    // console.log(this.chatDiv)
+    this.container = this.shadowRoot.querySelector('#chat')
+    this.chatDiv = document.importNode(this.container.firstElementChild, true)
+    // this.chatDiv = this.shadowRoot.querySelector('.message-area')
+    this.messageArea = this.shadowRoot.querySelector('.message-area')
+    console.log(this.chatDiv)
 
-    this.chatDiv.addEventListener('keypress', e => {
+    this.messageArea.addEventListener('keypress', e => {
       // listen for enter key
       if (e.keyCode === 13) {
         this.sendMessage(e.target.value)
@@ -47,6 +50,11 @@ export default class Chat extends window.HTMLElement {
       resolve(this.socket)
       // this.socket.addEventListener('open', () => {
       // })
+
+      this.socket.addEventListener('message', e => {
+        this.message = JSON.parse(e.data)
+        this.printMessage(this.message)
+      })
     })
     let result = await promise
     return result
@@ -65,8 +73,15 @@ export default class Chat extends window.HTMLElement {
     console.log('Sending message ' + text)
   }
 
-  printMessage () {
+  printMessage (message) {
+    this.template = this.chatDiv.querySelectorAll('template')[0]
+    this.messageDiv = document.importNode(this.template.content.firstElementChild, true)
+    console.log(this.messageDiv)
 
+    this.messageDiv.querySelectorAll('.text')[0].textContent = message.data
+    this.messageDiv.querySelectorAll('.author')[0].textContent = message.username
+
+    this.shadowRoot.querySelectorAll('.messages')[0].appendChild(this.messageDiv)
   }
 }
 

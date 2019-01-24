@@ -52,6 +52,7 @@ const chatTemplate = document.createElement('template')
 chatTemplate.innerHTML = /* html */`
 <drag-window>
 <div id="chat-container">
+  <div id="chat">
     <div class="chat">
       <div class="messages">
         <template>
@@ -62,7 +63,8 @@ chatTemplate.innerHTML = /* html */`
         </template>
       </div>
       <textarea class="message-area"></textarea>
-    </div>
+      </div>
+  </div>
 </div>
 </drag-window>
 `
