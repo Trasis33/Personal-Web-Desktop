@@ -1,8 +1,10 @@
 import Memory from './Memory.js'
+import Chat from './Chat.js'
 import './dragWindow.js'
 
 let container = document.querySelector('#app-container')
 let memBtn = document.querySelector('#memory-button')
+let chatBtn = document.querySelector('#chat-button')
 
 let appArray = []
 
@@ -12,6 +14,15 @@ memBtn.addEventListener('click', () => {
   let mem = new Memory()
   container.appendChild(mem)
   appArray.push(mem)
+
+  setZIndex()
+  closeWindow()
+})
+
+chatBtn.addEventListener('click', () => {
+  let chat = new Chat()
+  container.appendChild(chat)
+  appArray.push(chat)
 
   setZIndex()
   closeWindow()
