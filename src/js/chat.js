@@ -8,7 +8,7 @@ export default class Chat extends window.HTMLElement {
 
     // this.adress = config.key
 
-    this.socket = new WebSocket('ws://vhost3.lnu.se:20080/socket/')
+    // this.socket = new WebSocket('ws://vhost3.lnu.se:20080/socket/')
     // console.log(this.adress)
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(chatCss.content.cloneNode(true))
@@ -31,12 +31,25 @@ export default class Chat extends window.HTMLElement {
     })
 
     this.connect()
-    this.sendMessage('test')
+    // this.sendMessage('test')
   }
 
-  connect () {
+  async connect () {
     // new WebSocket('ws://vhost3.lnu.se:20080/socket/')
 
+    let promise = new Promise((resolve, reject) => {
+      if (this.socket && this.socket.readyState === 1) {
+        resolve(this.socket)
+        return
+      }
+      this.socket = new WebSocket('ws://vhost3.lnu.se:20080/socket/')
+
+      resolve(this.socket)
+      // this.socket.addEventListener('open', () => {
+      // })
+    })
+    let result = await promise
+    return result
   }
 
   sendMessage (text) {
@@ -49,6 +62,7 @@ export default class Chat extends window.HTMLElement {
     }
 
     this.socket.send(JSON.stringify(this.data))
+    console.log('Sending message ' + text)
   }
 
   printMessage () {
