@@ -39,4 +39,17 @@ img {
 </style>
 `
 
-export { memoryCss, dragCss }
+const chatCss = document.createElement('template')
+chatCss.innerHTML = /* css */`
+<style>
+#chat-container {
+  width: 300px;
+  height: 350px;
+  border: 2px solid black;
+  background-color: rgb(224, 250, 250);
+  position: absolute;
+  cursor: pointer;
+</style>
+`
+
+export { memoryCss, dragCss, chatCss }
