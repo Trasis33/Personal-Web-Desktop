@@ -48,6 +48,27 @@ memoryTemplate.innerHTML = /* html */`
 </drag-window>
 `
 
+const chatTemplate = document.createElement('template')
+chatTemplate.innerHTML = /* html */`
+<drag-window>
+<div id="chat-container">
+  <template id="chat">
+    <div class="chat">
+      <div class="messages">
+        <template>
+          <div class="message">
+            <p class="text"></p>
+            <p class="author"></p>
+          </div>
+        </template>
+      </div>
+      <textarea class="message-area"></textarea>
+    </div>
+  </template>
+</div>
+</drag-window>
+`
+
 export {
   memoryTemplate,
   memoryInputTemplate,
