@@ -52,7 +52,6 @@ const chatTemplate = document.createElement('template')
 chatTemplate.innerHTML = /* html */`
 <drag-window>
 <div id="chat-container">
-  <template id="chat">
     <div class="chat">
       <div class="messages">
         <template>
@@ -64,7 +63,6 @@ chatTemplate.innerHTML = /* html */`
       </div>
       <textarea class="message-area"></textarea>
     </div>
-  </template>
 </div>
 </drag-window>
 `
@@ -73,5 +71,6 @@ export {
   memoryTemplate,
   memoryInputTemplate,
   desktopTemplate,
-  dragTemplate
+  dragTemplate,
+  chatTemplate
 }
