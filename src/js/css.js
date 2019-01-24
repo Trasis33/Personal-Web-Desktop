@@ -2,6 +2,13 @@
 const dragCss = document.createElement('template')
 dragCss.innerHTML = /* css */`
 <style>
+
+#status-bar {
+  border: 2px solid black;
+  background-color: rgb(224, 250, 250);
+  width: 300px;
+}
+
 #drag-container {
   position: absolute;
   width: auto;

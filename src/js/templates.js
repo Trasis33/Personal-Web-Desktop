@@ -13,6 +13,9 @@ desktopTemplate.innerHTML = /* html */`
 const dragTemplate = document.createElement('template')
 dragTemplate.innerHTML = /* html */`
 <div id="drag-container">
+  <div id="status-bar">
+  <button type="button" id="close-window">close</button>
+  </div>
   <slot></slot>
 </div>
 `

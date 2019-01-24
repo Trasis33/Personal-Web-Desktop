@@ -12,14 +12,14 @@ memBtn.addEventListener('click', () => {
   let mem = new Memory()
   container.appendChild(mem)
   appArray.push(mem)
-  // console.log(appArray.length)
+
   setZIndex()
+  closeWindow()
 })
 
 container.addEventListener('mousedown', e => {
   let index = appArray.indexOf(e.target)
   let tempIndex = appArray[index]
-  // console.log(appArray)
 
   appArray.splice(index, 1)
   appArray.push(tempIndex)
@@ -27,17 +27,23 @@ container.addEventListener('mousedown', e => {
 })
 
 function getPath (e) {
-  // appArray.forEach(e => {
-  // console.log(e.shadowRoot.querySelector('drag-window').shadowRoot.querySelector('#drag-container'))
-  // e.shadowRoot.querySelector('drag-window').shadowRoot.querySelector('#drag-container')
   return e.shadowRoot.querySelector('drag-window').shadowRoot.querySelector('#drag-container')
-  // })
 }
 
 function setZIndex () {
-  // let zPath = path
-
   appArray.forEach(e => {
     getPath(e).style.zIndex = zOffset + appArray.indexOf(e)
+  })
+}
+
+function closeWindow () {
+  let button = appArray[appArray.length - 1].shadowRoot.querySelector('drag-window').shadowRoot.querySelector('#status-bar #close-window')
+
+  button.addEventListener('click', e => {
+    // console.log('hej')
+    let closePath = e.target.parentNode.parentNode.parentNode.host.parentNode.host
+    // console.log(closePath)
+    closePath.parentNode.removeChild(closePath)
+    appArray.pop()
   })
 }
