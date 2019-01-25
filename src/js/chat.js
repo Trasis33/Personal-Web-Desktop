@@ -6,6 +6,8 @@ export default class Chat extends window.HTMLElement {
   constructor () {
     super()
 
+    this.username = ''
+
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(chatCss.content.cloneNode(true))
     this.shadowRoot.appendChild(chatTemplate.content.cloneNode(true))
@@ -13,18 +15,28 @@ export default class Chat extends window.HTMLElement {
     this.container = this.shadowRoot.querySelector('#chat')
     this.chatDiv = document.importNode(this.container.firstElementChild, true)
     this.messageArea = this.shadowRoot.querySelector('.message-area')
+    // this.inputTemplate = this.shadowRoot.querySelector('#user-input')
+    // console.log(this.inputTemplate)
 
-    this.messageArea.addEventListener('keypress', e => {
-      // listen for enter key
-      if (e.keyCode === 13) {
-        this.sendMessage(e.target.value)
-        // empty textarea
-        e.target.value = ''
-        e.preventDefault()
-      }
-    })
+    // this.messageArea.addEventListener('keypress', e => {
+    //   // listen for enter key
+    //   if (e.keyCode === 13) {
+    //     this.sendMessage(e.target.value)
+    //     // empty textarea
+    //     e.target.value = ''
+    //     e.preventDefault()
+    //   }
+    // })
 
-    this.connect()
+    // this.connect()
+    this.createUsername()
+  }
+
+  createUsername () {
+    this.userTemplate = this.chatDiv.querySelector('#user-input')
+    this.inputDiv = document.importNode(this.userTemplate.content.firstElementChild, true)
+    // console.log(this.inputDiv)
+    this.container.appendChild(this.inputDiv)
   }
 
   async connect () {

@@ -54,19 +54,32 @@ chatTemplate.innerHTML = /* html */`
 <div id="chat-container">
   <div id="chat">
     <div class="chat">
+    <template id="user-input">
+    <div class="input-container">
+      <form id="input-form">
+        <input id="input-field" type="text"></input>
+        <button id="submit-button" type="button">Submit</button>
+      </form>
+    </div>
+    </template>
+    <template>
       <div class="messages" id="scrollbar">
-        <template>
           <div class="message">
             <p class="text"></p>
             <p class="author"></p>
           </div>
-        </template>
       </div>
       <textarea class="message-area"></textarea>
-      </div>
+      </template>
+    </div>
   </div>
 </div>
 </drag-window>
+`
+
+const chatUsernameTemplate = document.createElement('template')
+chatUsernameTemplate.innerHTML = /* html */`
+
 `
 
 export {
@@ -74,5 +87,6 @@ export {
   memoryInputTemplate,
   desktopTemplate,
   dragTemplate,
+  chatUsernameTemplate,
   chatTemplate
 }
