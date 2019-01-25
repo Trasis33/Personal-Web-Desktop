@@ -50,6 +50,7 @@ chatCss.innerHTML = /* css */`
   background-color: rgb(224, 250, 250);
   position: absolute;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .messages {
@@ -78,6 +79,10 @@ chatCss.innerHTML = /* css */`
   rgba(255, 255, 255, .2) 75%,
   transparent 75%,
   transparent)
+}
+
+.message-area {
+  
 }
 
 </style>

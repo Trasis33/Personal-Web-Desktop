@@ -6,22 +6,13 @@ export default class Chat extends window.HTMLElement {
   constructor () {
     super()
 
-    // this.adress = config.key
-
-    // this.socket = new WebSocket('ws://vhost3.lnu.se:20080/socket/')
-    // console.log(this.adress)
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(chatCss.content.cloneNode(true))
     this.shadowRoot.appendChild(chatTemplate.content.cloneNode(true))
 
-    // this.template = this.shadowRoot.querySelector('.chat')
-    // this.chatDiv = this.shadowRoot.importNode(this.template.content.firstChild, true)
-
     this.container = this.shadowRoot.querySelector('#chat')
     this.chatDiv = document.importNode(this.container.firstElementChild, true)
-    // this.chatDiv = this.shadowRoot.querySelector('.message-area')
     this.messageArea = this.shadowRoot.querySelector('.message-area')
-    console.log(this.chatDiv)
 
     this.messageArea.addEventListener('keypress', e => {
       // listen for enter key
@@ -34,12 +25,9 @@ export default class Chat extends window.HTMLElement {
     })
 
     this.connect()
-    // this.sendMessage('test')
   }
 
   async connect () {
-    // new WebSocket('ws://vhost3.lnu.se:20080/socket/')
-
     let promise = new Promise((resolve, reject) => {
       if (this.socket && this.socket.readyState === 1) {
         resolve(this.socket)
@@ -48,8 +36,6 @@ export default class Chat extends window.HTMLElement {
       this.socket = new WebSocket('ws://vhost3.lnu.se:20080/socket/')
 
       resolve(this.socket)
-      // this.socket.addEventListener('open', () => {
-      // })
 
       this.socket.addEventListener('message', e => {
         this.message = JSON.parse(e.data)
@@ -58,6 +44,7 @@ export default class Chat extends window.HTMLElement {
         }
       })
     })
+
     let result = await promise
     return result
   }
