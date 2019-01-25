@@ -7,6 +7,7 @@ export default class Chat extends window.HTMLElement {
     super()
 
     this.username = ''
+    this.timer = undefined
 
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(chatCss.content.cloneNode(true))
@@ -14,29 +15,54 @@ export default class Chat extends window.HTMLElement {
 
     this.container = this.shadowRoot.querySelector('#chat')
     this.chatDiv = document.importNode(this.container.firstElementChild, true)
-    this.messageArea = this.shadowRoot.querySelector('.message-area')
-    // this.inputTemplate = this.shadowRoot.querySelector('#user-input')
-    // console.log(this.inputTemplate)
 
-    // this.messageArea.addEventListener('keypress', e => {
-    //   // listen for enter key
-    //   if (e.keyCode === 13) {
-    //     this.sendMessage(e.target.value)
-    //     // empty textarea
-    //     e.target.value = ''
-    //     e.preventDefault()
-    //   }
-    // })
-
-    // this.connect()
     this.createUsername()
   }
 
   createUsername () {
     this.userTemplate = this.chatDiv.querySelector('#user-input')
     this.inputDiv = document.importNode(this.userTemplate.content.firstElementChild, true)
-    // console.log(this.inputDiv)
+
     this.container.appendChild(this.inputDiv)
+    this.result = this.shadowRoot.querySelector('#result')
+
+    this.inputButton = this.shadowRoot.querySelector('#submit-button')
+
+    this.inputButton.addEventListener('click', () => {
+      this.input = this.shadowRoot.querySelector('#input-field').value
+
+      if (this.input.length < 3) {
+        this.result.textContent = 'Username minimum of 3 characters!'
+      } else {
+        this.username = this.input
+        this.result.textContent = 'Your username is ' + this.username
+
+        this.timer = setTimeout(() => {
+          this.startChat()
+        }, 1000)
+      }
+    })
+  }
+
+  startChat () {
+    this.container.removeChild(this.inputDiv)
+
+    this.mTemplate = this.chatDiv.querySelectorAll('template')[1]
+    this.messDiv = document.importNode(this.mTemplate.content.firstElementChild, true)
+    this.container.appendChild(this.messDiv)
+    this.messageArea = this.container.querySelector('.message-area')
+
+    this.messageArea.addEventListener('keypress', e => {
+      // listen for enter key
+      if (e.keyCode === 13) {
+        this.sendMessage(e.target.value, this.username)
+        // empty textarea
+        e.target.value = ''
+        e.preventDefault()
+      }
+    })
+
+    this.connect()
   }
 
   async connect () {
@@ -61,11 +87,11 @@ export default class Chat extends window.HTMLElement {
     return result
   }
 
-  sendMessage (text) {
+  sendMessage (text, user) {
     this.data = {
       type: 'message',
       data: text,
-      username: 'trasis',
+      username: user,
       channel: '',
       key: 'eDBE76deU7L0H9mEBgxUKVR0VCnq0XBd'
     }
@@ -75,9 +101,8 @@ export default class Chat extends window.HTMLElement {
   }
 
   printMessage (message) {
-    this.template = this.chatDiv.querySelectorAll('template')[0]
+    this.template = this.shadowRoot.querySelectorAll('template')[2]
     this.messageDiv = document.importNode(this.template.content.firstElementChild, true)
-    console.log(this.messageDiv)
 
     this.messageDiv.querySelectorAll('.text')[0].textContent = message.data
     this.messageDiv.querySelectorAll('.author')[0].textContent = message.username
