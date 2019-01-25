@@ -54,7 +54,7 @@ chatTemplate.innerHTML = /* html */`
 <div id="chat-container">
   <div id="chat">
     <div class="chat">
-      <div class="messages">
+      <div class="messages" id="scrollbar">
         <template>
           <div class="message">
             <p class="text"></p>
