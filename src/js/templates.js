@@ -41,8 +41,21 @@ const memoryTemplate = document.createElement('template')
 memoryTemplate.innerHTML = /* html */`
 <drag-window>
 <div id="memory-container">
-<p>Memory Game</p>
-  <div class="memCards">
+  <div id="memory">
+    <p>Memory Game</p>
+    <template id="user-input">
+      <div class="input-container">
+        <form id="input-form">
+          <input id="input-field" type="text"></input>
+          <button id="submit-button" type="button">Submit</button>
+        </form>
+        <p id="result"></p>
+      </div>
+    </template>
+      <template>
+        <div class="memCards">
+        </div>
+      </template>
   </div>
 </div>
 </drag-window>

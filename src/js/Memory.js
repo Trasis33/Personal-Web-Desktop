@@ -21,26 +21,43 @@ export default class Memory extends window.HTMLElement {
     this.shadowRoot.appendChild(memoryCss.content.cloneNode(true))
     this.shadowRoot.appendChild(memoryTemplate.content.cloneNode(true))
 
-    // this.rowsInput = this.shadowRoot.querySelector('#rows-input')
-    // this.colsInput = this.shadowRoot.querySelector('#cols-input')
-    // this.inputBtn = this.shadowRoot.querySelector('.input-field1')
-    // this.clean()
-    this.startGame()
+    this.userInput()
   }
 
-  // connectedCallback () {
-  //   console.log(this.inputBtn)
-  //   this.inputBtn.addEventListener('click', () => {
-  //     this.rows = this.rowsInput
-  //     this.cols = this.colsInput
-  //     console.log(this.rows)
-  //     this.clean()
-  //     this.startGame()
-  //   })
-  // }
+  userInput () {
+    this.template = this.shadowRoot.querySelectorAll('template')[0]
+    this.memContainer = this.shadowRoot.querySelector('#memory')
+
+    this.inputDiv = document.importNode(this.template.content.firstElementChild, true)
+
+    this.memContainer.appendChild(this.inputDiv)
+    this.result = this.shadowRoot.querySelector('#result')
+    console.log(this.result)
+    this.result.textContent = 'Enter a grid size from 2 to 4'
+
+    this.inputButton = this.shadowRoot.querySelector('#submit-button')
+    this.inputButton.addEventListener('click', () => {
+      this.input = this.shadowRoot.querySelector('#input-field').value
+
+      if (this.input > 4) {
+        this.result.textContent = 'Maximum grid size is 4!'
+      } else if (this.input < 2) {
+        this.result.textContent = 'Minimum grid size is 2!'
+      } else {
+        this.rows = this.input
+        this.cols = this.input
+
+        this.memContainer.removeChild(this.inputDiv)
+        this.startGame()
+      }
+    })
+  }
 
   startGame () {
-    // this.shadowRoot.appendChild(memoryTemplate.content.cloneNode(true))
+    this.memTemplate = this.shadowRoot.querySelectorAll('template')[1]
+    this.memDiv = document.importNode(this.memTemplate.content.firstElementChild, true)
+
+    this.memContainer.appendChild(this.memDiv)
 
     this.tiles = this.getPicArray(this.rows, this.cols)
 
