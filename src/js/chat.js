@@ -99,6 +99,7 @@ export default class Chat extends window.HTMLElement {
         if (this.message.type === 'message') {
           this.printMessage(this.message)
           this.messageStorage(this.message)
+          this.updateScroll()
         }
       })
     })
@@ -156,6 +157,11 @@ export default class Chat extends window.HTMLElement {
     ).slice(0, 20)
 
     window.localStorage.setItem('messages', JSON.stringify(messages))
+  }
+
+  updateScroll () {
+    let chat = this.shadowRoot.getElementById('scrollbar')
+    chat.scrollTop = chat.scrollHeight
   }
 }
 
