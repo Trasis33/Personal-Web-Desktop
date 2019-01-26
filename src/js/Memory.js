@@ -32,24 +32,25 @@ export default class Memory extends window.HTMLElement {
 
     this.memContainer.appendChild(this.inputDiv)
     this.result = this.shadowRoot.querySelector('#result')
-    console.log(this.result)
-    this.result.textContent = 'Enter a grid size from 2 to 4'
 
-    this.inputButton = this.shadowRoot.querySelector('#submit-button')
-    this.inputButton.addEventListener('click', () => {
-      this.input = this.shadowRoot.querySelector('#input-field').value
+    this.result.textContent = 'Choose a grid size, 2 or 4'
 
-      if (this.input > 4) {
-        this.result.textContent = 'Maximum grid size is 4!'
-      } else if (this.input < 2) {
-        this.result.textContent = 'Minimum grid size is 2!'
-      } else {
-        this.rows = this.input
-        this.cols = this.input
+    this.inputButton2 = this.shadowRoot.querySelector('#two-button')
+    this.inputButton2.addEventListener('click', () => {
+      this.rows = 2
+      this.cols = 2
 
-        this.memContainer.removeChild(this.inputDiv)
-        this.startGame()
-      }
+      this.memContainer.removeChild(this.inputDiv)
+      this.startGame()
+      // }
+    })
+    this.inputButton4 = this.shadowRoot.querySelector('#four-button')
+    this.inputButton4.addEventListener('click', () => {
+      this.rows = 4
+      this.cols = 4
+
+      this.memContainer.removeChild(this.inputDiv)
+      this.startGame()
     })
   }
 
@@ -114,6 +115,9 @@ export default class Memory extends window.HTMLElement {
         this.pairs++
 
         if (this.pairs === (this.cols * this.rows) / 2) {
+          let p = document.createElement('p')
+          p.textContent = 'You won on ' + this.tries + ' number of tries!!!'
+          this.memContainer.appendChild(p)
           console.log('You won on ' + this.tries + ' number of tries!!!')
         }
 

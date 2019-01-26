@@ -46,8 +46,8 @@ memoryTemplate.innerHTML = /* html */`
     <template id="user-input">
       <div class="input-container">
         <form id="input-form">
-          <input id="input-field" type="text"></input>
-          <button id="submit-button" type="button">Submit</button>
+          <button id="two-button" type="button">2</input>
+          <button id="four-button" type="button">4</button>
         </form>
         <p id="result"></p>
       </div>
