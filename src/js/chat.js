@@ -153,7 +153,7 @@ export default class Chat extends window.HTMLElement {
 
     let messages = [...JSON.parse(messageBoard), msgObj].sort((a, b) =>
       b.time - a.time
-    ).slice(0, 5)
+    ).slice(0, 20)
 
     window.localStorage.setItem('messages', JSON.stringify(messages))
   }
