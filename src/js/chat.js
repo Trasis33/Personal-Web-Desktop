@@ -122,21 +122,43 @@ export default class Chat extends window.HTMLElement {
     this.template = this.shadowRoot.querySelectorAll('template')[2]
     this.messageDiv = document.importNode(this.template.content.firstElementChild, true)
 
-    this.messageDiv.querySelectorAll('.text')[0].textContent = message.data
-    this.messageDiv.querySelectorAll('.author')[0].textContent = message.username
+    let text = this.messageDiv.querySelectorAll('.text')[0]
+    let author = this.messageDiv.querySelectorAll('.author')[0]
+
+    // let objValue = Object.values(window.localStorage.getItem('messages'))
+    // let objName = Object.keys(window.localStorage.getItem('messages'))
+
+    // console.log(window.localStorage.getItem('messages').message)
+
+    // if (ls.hasMessages()) {
+    //   for (let i = 0; i < window.localStorage.getItem('messages').length; i++) {
+    //     text.textContent = window.localStorage.getItem('messages').message[i]
+    //     author.textContent = window.localStorage.getItem('messages').username[i]
+    //   }
+    // }
+
+    text.textContent = message.data
+    author.textContent = message.username
 
     this.shadowRoot.querySelectorAll('.messages')[0].appendChild(this.messageDiv)
+  }
+
+  printMessageHistory () {
+
   }
 
   messageStorage (message) {
     let msgObj = {
       username: message.username,
-      message: message.data
+      message: message.data,
+      time: new Date().getTime()
     }
 
     let messageBoard = window.localStorage.getItem('messages') || '[]'
 
-    let messages = [...JSON.parse(messageBoard), msgObj].slice(0, 25)
+    let messages = [...JSON.parse(messageBoard), msgObj].sort((a, b) =>
+      b.time - a.time
+    ).slice(0, 20)
 
     window.localStorage.setItem('messages', JSON.stringify(messages))
   }

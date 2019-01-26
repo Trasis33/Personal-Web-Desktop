@@ -16,7 +16,15 @@ export function getUsername (key) {
 }
 
 export function hasUsername () {
-  if (window.localStorage.length > 0) {
+  if (window.localStorage.getItem('username')) {
+    return true
+  } else {
+    return false
+  }
+}
+
+export function hasMessages () {
+  if (window.localStorage.getItem('messages')) {
     return true
   } else {
     return false
