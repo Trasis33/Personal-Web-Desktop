@@ -1,6 +1,7 @@
 import { chatTemplate } from './templates.js'
 import { chatCss } from './css.js'
 // import * as config from './config.js'
+import * as ls from './LocalStorage.js'
 
 export default class Chat extends window.HTMLElement {
   constructor () {

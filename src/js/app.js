@@ -1,10 +1,12 @@
 import Memory from './Memory.js'
 import Chat from './Chat.js'
 import './dragWindow.js'
+import * as ls from './LocalStorage.js'
 
 let container = document.querySelector('#app-container')
 let memBtn = document.querySelector('#memory-button')
 let chatBtn = document.querySelector('#chat-button')
+ls.hasLocalStorage()
 
 let appArray = []
 
