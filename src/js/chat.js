@@ -96,6 +96,7 @@ export default class Chat extends window.HTMLElement {
         this.message = JSON.parse(e.data)
         if (this.message.type === 'message') {
           this.printMessage(this.message)
+          this.messageStorage(this.message)
         }
       })
     })
@@ -125,6 +126,19 @@ export default class Chat extends window.HTMLElement {
     this.messageDiv.querySelectorAll('.author')[0].textContent = message.username
 
     this.shadowRoot.querySelectorAll('.messages')[0].appendChild(this.messageDiv)
+  }
+
+  messageStorage (message) {
+    let msgObj = {
+      username: message.username,
+      message: message.data
+    }
+
+    let messageBoard = window.localStorage.getItem('messages') || '[]'
+
+    let messages = [...JSON.parse(messageBoard), msgObj].slice(0, 25)
+
+    window.localStorage.setItem('messages', JSON.stringify(messages))
   }
 }
 
