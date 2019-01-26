@@ -8,6 +8,7 @@ export default class Chat extends window.HTMLElement {
     super()
 
     this.username = ''
+    this.messages = undefined
     this.timer = undefined
 
     this.attachShadow({ mode: 'open' })
@@ -80,6 +81,7 @@ export default class Chat extends window.HTMLElement {
         e.preventDefault()
       }
     })
+    this.printMessageHistory()
   }
 
   async connect () {
@@ -125,18 +127,6 @@ export default class Chat extends window.HTMLElement {
     let text = this.messageDiv.querySelectorAll('.text')[0]
     let author = this.messageDiv.querySelectorAll('.author')[0]
 
-    // let objValue = Object.values(window.localStorage.getItem('messages'))
-    // let objName = Object.keys(window.localStorage.getItem('messages'))
-
-    // console.log(window.localStorage.getItem('messages').message)
-
-    // if (ls.hasMessages()) {
-    //   for (let i = 0; i < window.localStorage.getItem('messages').length; i++) {
-    //     text.textContent = window.localStorage.getItem('messages').message[i]
-    //     author.textContent = window.localStorage.getItem('messages').username[i]
-    //   }
-    // }
-
     text.textContent = message.data
     author.textContent = message.username
 
@@ -144,13 +134,18 @@ export default class Chat extends window.HTMLElement {
   }
 
   printMessageHistory () {
+    if (window.localStorage.getItem('messages')) {
+      let messages = window.localStorage.getItem('messages')
+      this.messages = JSON.parse(messages)
 
+      this.messages.sort((a, b) => Number(a.time) - Number(b.time)).map(message => this.printMessage(message))
+    }
   }
 
   messageStorage (message) {
     let msgObj = {
       username: message.username,
-      message: message.data,
+      data: message.data,
       time: new Date().getTime()
     }
 
@@ -158,7 +153,7 @@ export default class Chat extends window.HTMLElement {
 
     let messages = [...JSON.parse(messageBoard), msgObj].sort((a, b) =>
       b.time - a.time
-    ).slice(0, 20)
+    ).slice(0, 5)
 
     window.localStorage.setItem('messages', JSON.stringify(messages))
   }
