@@ -17,7 +17,16 @@ export default class Chat extends window.HTMLElement {
     this.container = this.shadowRoot.querySelector('#chat')
     this.chatDiv = document.importNode(this.container.firstElementChild, true)
 
-    this.createUsername()
+    this.checkLocalStorage()
+  }
+
+  checkLocalStorage () {
+    if (ls.hasUsername() === true) {
+      this.username = ls.getUsername('username')
+      this.startChat()
+    } else {
+      this.createUsername()
+    }
   }
 
   createUsername () {
@@ -35,18 +44,27 @@ export default class Chat extends window.HTMLElement {
       if (this.input.length < 3) {
         this.result.textContent = 'Username minimum of 3 characters!'
       } else {
+        // if (ls.hasUsername()) {
+        //   this.username = ls.getUsername('username')
+        //   console.log(this.username)
+        //   this.startChat()
+        // } else {
+        // ls.setUsername('username', this.input)
         this.username = this.input
+        ls.setUsername('username', this.username)
         this.result.textContent = 'Your username is ' + this.username
 
         this.timer = setTimeout(() => {
+          this.container.removeChild(this.inputDiv)
           this.startChat()
         }, 1000)
       }
+      // }
     })
   }
 
   startChat () {
-    this.container.removeChild(this.inputDiv)
+    this.connect()
 
     this.mTemplate = this.chatDiv.querySelectorAll('template')[1]
     this.messDiv = document.importNode(this.mTemplate.content.firstElementChild, true)
@@ -62,8 +80,6 @@ export default class Chat extends window.HTMLElement {
         e.preventDefault()
       }
     })
-
-    this.connect()
   }
 
   async connect () {
@@ -98,7 +114,7 @@ export default class Chat extends window.HTMLElement {
     }
 
     this.socket.send(JSON.stringify(this.data))
-    console.log('Sending message ' + text)
+    console.log('Sending message ' + text + ' from username ' + user)
   }
 
   printMessage (message) {

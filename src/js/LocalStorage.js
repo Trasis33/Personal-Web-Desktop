@@ -12,5 +12,13 @@ export function setUsername (key, value) {
 }
 
 export function getUsername (key) {
-  window.localStorage.getItem(key)
+  return window.localStorage.getItem(key)
+}
+
+export function hasUsername () {
+  if (window.localStorage.length > 0) {
+    return true
+  } else {
+    return false
+  }
 }
