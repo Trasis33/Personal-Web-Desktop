@@ -41,7 +41,7 @@ export default class Calculator extends window.HTMLElement {
         return
       }
       if (e.target.classList.contains('clear')) {
-        this.inputNum(e.target.value)
+        this.reset()
         this.updateDisplay()
         return
       }
@@ -65,13 +65,22 @@ export default class Calculator extends window.HTMLElement {
   }
 
   inputDec (decimal) {
-    if (!this.calcObj.display.includes(decimal)) {
-      this.calcObj.display += decimal
+    // to not be able to add decimal after choosing function
+    if (!this.calcObj.secondNum === true) {
+      // to only be able to add one decimal
+      if (!this.calcObj.display.includes(decimal)) {
+        this.calcObj.display += decimal
+      }
     }
   }
 
   funcs (nextFunc) {
     let input = parseFloat(this.calcObj.display)
+
+    if (this.calcObj.func && this.calcObj.secondNum) {
+      this.calcObj.func = nextFunc
+      return
+    }
 
     if (this.calcObj.firstNum === null) {
       this.calcObj.firstNum = input
@@ -102,6 +111,13 @@ export default class Calculator extends window.HTMLElement {
     if (func === '=') {
       return secondNum
     }
+  }
+
+  reset () {
+    this.calcObj.firstNum = null
+    this.calcObj.secondNum = false
+    this.calcObj.func = null
+    this.calcObj.display = '0'
   }
 }
 
