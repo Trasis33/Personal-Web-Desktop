@@ -97,7 +97,16 @@ chatTemplate.innerHTML = /* html */`
 
 const calcTemplate = document.createElement('template')
 calcTemplate.innerHTML = /* html */`
-
+<drag-window>
+<div id="calc-container">
+  <div id="calculator">
+    <div class="calc-display">0</div>
+    <div class="calc-buttons">
+    
+    </div>
+  </div>
+</div>
+</drag-window>
 `
 
 export {
