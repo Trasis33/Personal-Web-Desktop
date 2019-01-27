@@ -21,29 +21,41 @@ export default class Calculator extends window.HTMLElement {
       display: '0'
     }
     this.updateDisplay()
-    this.calcInput()
+    this.btnInput()
   }
 
   updateDisplay () {
     this.display.textContent = this.calcObj.display
   }
 
-  calcInput () {
+  btnInput () {
     this.buttons.addEventListener('click', e => {
       if (e.target.classList.contains('function')) {
-        console.log(e.target.value)
+        this.inputNum(e.target.value)
+        this.updateDisplay()
         return
       }
       if (e.target.classList.contains('decimal')) {
-        console.log(e.target.value)
+        this.inputNum(e.target.value)
+        this.updateDisplay()
         return
       }
       if (e.target.classList.contains('clear')) {
-        console.log(e.target.value)
+        this.inputNum(e.target.value)
+        this.updateDisplay()
         return
       }
-      console.log(e.target.value)
+      this.inputNum(e.target.value)
+      this.updateDisplay()
     })
+  }
+
+  inputNum (num) {
+    if (this.calcObj.display === '0') {
+      this.calcObj.display = num
+    } else {
+      this.calcObj.display = this.calcObj.display + num
+    }
   }
 }
 
