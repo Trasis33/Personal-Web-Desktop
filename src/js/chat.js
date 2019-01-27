@@ -10,6 +10,7 @@ export default class Chat extends window.HTMLElement {
     this.username = ''
     this.messages = undefined
     this.timer = undefined
+    this.socket = undefined
 
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(chatCss.content.cloneNode(true))
@@ -19,6 +20,10 @@ export default class Chat extends window.HTMLElement {
     this.chatDiv = document.importNode(this.container.firstElementChild, true)
 
     this.checkLocalStorage()
+  }
+
+  disconnectedCallback () {
+    this.socket.close()
   }
 
   checkLocalStorage () {
@@ -86,11 +91,12 @@ export default class Chat extends window.HTMLElement {
 
   async connect () {
     let promise = new Promise((resolve, reject) => {
+      // checks if connection is open
       if (this.socket && this.socket.readyState === 1) {
         resolve(this.socket)
         return
       }
-      this.socket = new WebSocket('ws://vhost3.lnu.se:20080/socket/')
+      this.socket = new window.WebSocket('ws://vhost3.lnu.se:20080/socket/')
 
       resolve(this.socket)
 
