@@ -118,7 +118,7 @@ calcTemplate.innerHTML = /* html */`
       <button type="button" value="0">0</button>
       <button type="button" class="decimal" value=".">.</button>
       <button type="button" class="clear" value="clear">AC</button>
-      <button type="button" class="equal" value="=">=</button>
+      <button type="button" class="equal function" value="=">=</button>
     </div>
   </div>
 </div>

@@ -51,10 +51,15 @@ export default class Calculator extends window.HTMLElement {
   }
 
   inputNum (num) {
-    if (this.calcObj.display === '0') {
+    if (this.calcObj.secondNum === true) {
       this.calcObj.display = num
+      this.calcObj.secondNum = false
     } else {
-      this.calcObj.display += num
+      if (this.calcObj.display === '0') {
+        this.calcObj.display = num
+      } else {
+        this.calcObj.display += num
+      }
     }
     console.log(this.calcObj)
   }
@@ -70,10 +75,33 @@ export default class Calculator extends window.HTMLElement {
 
     if (this.calcObj.firstNum === null) {
       this.calcObj.firstNum = input
+    } else if (this.calcObj.func) {
+      let result = this.calculate(this.calcObj.func, this.calcObj.firstNum, input)
+
+      this.calcObj.display = String(result)
+      this.calcObj.firstNum = result
     }
     this.calcObj.secondNum = true
     this.calcObj.func = nextFunc
     console.log(this.calcObj)
+  }
+
+  calculate (func, firstNum, secondNum) {
+    if (func === '+') {
+      return firstNum + secondNum
+    }
+    if (func === '-') {
+      return firstNum - secondNum
+    }
+    if (func === '*') {
+      return firstNum * secondNum
+    }
+    if (func === '/') {
+      return firstNum / secondNum
+    }
+    if (func === '=') {
+      return secondNum
+    }
   }
 }
 
