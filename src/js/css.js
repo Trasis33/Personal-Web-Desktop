@@ -92,6 +92,13 @@ const calcCss = document.createElement('template')
 calcCss.innerHTML = /* css */`
 <style>
 
+button {
+  outline: none;
+  appearance: none;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+}
 #calc-container {
   width: 300px;
   height: 350px;
@@ -125,9 +132,22 @@ calcCss.innerHTML = /* css */`
 
 .calc-buttons > * {
   background-color: #fff;
-  padding: 1.5em 1.75em;
+  padding: 1.65em 1.75em;
   position: relative;
   text-align: center;
+}
+
+.calc-buttons > *:active::before {
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5) inset;
+  content: "";
+  opacity: 0.3;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
 }
 
 .function {
