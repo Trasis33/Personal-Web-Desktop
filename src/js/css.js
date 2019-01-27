@@ -88,4 +88,20 @@ chatCss.innerHTML = /* css */`
 </style>
 `
 
-export { memoryCss, dragCss, chatCss }
+const calcCss = document.createElement('template')
+calcCss.innerHTML = /* css */`
+<style>
+
+#calc-container {
+  width: 300px;
+  height: 350px;
+  border: 2px solid black;
+  background-color: rgb(224, 250, 250);
+  position: absolute;
+  cursor: pointer;
+}
+
+</style>
+`
+
+export { memoryCss, dragCss, chatCss, calcCss }

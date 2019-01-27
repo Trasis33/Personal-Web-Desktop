@@ -114,6 +114,6 @@ export {
   memoryInputTemplate,
   desktopTemplate,
   dragTemplate,
-  calcTemplate,
-  chatTemplate
+  chatTemplate,
+  calcTemplate
 }
