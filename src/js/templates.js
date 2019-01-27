@@ -100,7 +100,7 @@ calcTemplate.innerHTML = /* html */`
 <drag-window>
 <div id="calc-container">
   <div id="calculator">
-    <div class="calc-display">0</div>
+    <div class="calc-display"></div>
     <div class="calc-buttons">
       <button type="button" class="function" value="+">+</button>
       <button type="button" class="function" value="-">-</button>
