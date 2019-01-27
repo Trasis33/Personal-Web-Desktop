@@ -95,8 +95,8 @@ chatTemplate.innerHTML = /* html */`
 </drag-window>
 `
 
-const chatUsernameTemplate = document.createElement('template')
-chatUsernameTemplate.innerHTML = /* html */`
+const calcTemplate = document.createElement('template')
+calcTemplate.innerHTML = /* html */`
 
 `
 
@@ -105,6 +105,6 @@ export {
   memoryInputTemplate,
   desktopTemplate,
   dragTemplate,
-  chatUsernameTemplate,
+  calcTemplate,
   chatTemplate
 }
