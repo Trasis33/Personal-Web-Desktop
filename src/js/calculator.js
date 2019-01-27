@@ -31,12 +31,12 @@ export default class Calculator extends window.HTMLElement {
   btnInput () {
     this.buttons.addEventListener('click', e => {
       if (e.target.classList.contains('function')) {
-        this.inputNum(e.target.value)
+        this.funcs(e.target.value)
         this.updateDisplay()
         return
       }
       if (e.target.classList.contains('decimal')) {
-        this.inputNum(e.target.value)
+        this.inputDec(e.target.value)
         this.updateDisplay()
         return
       }
@@ -54,8 +54,26 @@ export default class Calculator extends window.HTMLElement {
     if (this.calcObj.display === '0') {
       this.calcObj.display = num
     } else {
-      this.calcObj.display = this.calcObj.display + num
+      this.calcObj.display += num
     }
+    console.log(this.calcObj)
+  }
+
+  inputDec (decimal) {
+    if (!this.calcObj.display.includes(decimal)) {
+      this.calcObj.display += decimal
+    }
+  }
+
+  funcs (nextFunc) {
+    let input = parseFloat(this.calcObj.display)
+
+    if (this.calcObj.firstNum === null) {
+      this.calcObj.firstNum = input
+    }
+    this.calcObj.secondNum = true
+    this.calcObj.func = nextFunc
+    console.log(this.calcObj)
   }
 }
 
