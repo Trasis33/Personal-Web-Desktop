@@ -37,6 +37,54 @@ background-size: contain;
   margin-left: auto;
   margin-right: auto;
 }
+
+#menu-bar {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 60px;
+  float: left;
+}
+
+li {
+  list-style-type: none;
+  padding: 20px;
+
+}
+
+ul a {
+  display: block;
+  width: 60px;
+}
+
+#memory-button {
+  background-image: url('../image/noun_Wireframe_414645.png');
+  background-size: cover;
+  background-color: transparent;
+  width: 99px;
+  height: 99px;
+  border: none;
+}
+
+#calc-button {
+  background-image: url('../image/noun_Calculator_879204.png');
+  background-size: cover;
+  background-color: transparent;
+  width: 99px;
+  height: 99px;
+  border: none;
+}
+
+#chat-button {
+  background-image: url('../image/noun_chat_2177386.png');
+  background-size: cover;
+  background-color: transparent;
+  width: 99px;
+  height: 99px;
+  border: none;
+}
+
 /* 
 #memory-container:hover {
   cursor: pointer;
@@ -50,4 +98,3 @@ background-size: contain;
 .removed {
   visibility: hidden;
 } */
-

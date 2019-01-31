@@ -156,13 +156,25 @@ export default class Chat extends window.HTMLElement {
       time: new Date().getTime()
     }
 
-    let messageBoard = window.localStorage.getItem('messages') || '[]'
+    let messageHistory = window.localStorage.getItem('messages') || '[]'
 
-    let messages = [...JSON.parse(messageBoard), msgObj].sort((a, b) =>
+    let history = JSON.parse(messageHistory)
+
+    if (history.some(msg => this.compareMsg(msg, msgObj))) {
+      return
+    }
+
+    let messages = [...history, msgObj].sort((a, b) =>
       b.time - a.time
     ).slice(0, 20)
 
     window.localStorage.setItem('messages', JSON.stringify(messages))
+  }
+
+  compareMsg (oldMsg, newMsg) {
+    return oldMsg.username === newMsg.username &&
+    oldMsg.data === newMsg.data &&
+    oldMsg.time.toString().substring(0, 11) === newMsg.time.toString().substring(0, 11)
   }
 
   updateScroll () {

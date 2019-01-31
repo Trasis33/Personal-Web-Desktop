@@ -14,7 +14,7 @@ const dragTemplate = document.createElement('template')
 dragTemplate.innerHTML = /* html */`
 <div id="drag-container">
   <div id="status-bar">
-  <button type="button" id="close-window">close</button>
+  <button type="button" id="close-window"></button>
   </div>
   <slot></slot>
 </div>
@@ -40,14 +40,14 @@ memoryInputTemplate.innerHTML = /* html */`
 const memoryTemplate = document.createElement('template')
 memoryTemplate.innerHTML = /* html */`
 <drag-window>
-<div id="memory-container">
+<div id="memory-container" class="effect">
   <div id="memory">
     <p>Memory Game</p>
     <template id="user-input">
       <div class="input-container">
         <form id="input-form">
-          <button id="two-button" type="button">2</input>
-          <button id="four-button" type="button">4</button>
+          <button id="two-button" type="button"></input>
+          <button id="four-button" type="button"></button>
         </form>
         <p id="result"></p>
       </div>
@@ -64,7 +64,7 @@ memoryTemplate.innerHTML = /* html */`
 const chatTemplate = document.createElement('template')
 chatTemplate.innerHTML = /* html */`
 <drag-window>
-<div id="chat-container">
+<div id="chat-container" class="effect">
   <div id="chat">
     <div class="chat">
       <template id="user-input">
@@ -98,7 +98,7 @@ chatTemplate.innerHTML = /* html */`
 const calcTemplate = document.createElement('template')
 calcTemplate.innerHTML = /* html */`
 <drag-window>
-<div id="calc-container">
+<div id="calc-container" class="effect">
   <div id="calculator">
     <div class="calc-display"></div>
     <div class="calc-buttons">
