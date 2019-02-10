@@ -188,6 +188,10 @@ chatCss.innerHTML = /* css */`
             transform:skew(8deg) rotate(3deg);
 }
 
+.message {
+  background: #c7ecee;
+}
+
 </style>
 `
 
